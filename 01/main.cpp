@@ -1,10 +1,11 @@
 #include <algorithm>
-#include <cstdint>
 #include <cstdlib>
 #include <fstream>
 #include <iostream>
+#include <numeric>
 #include <string>
-#include <vector>
+
+#include "algo.h"
 
 
 auto getInput() { 
@@ -25,17 +26,8 @@ auto getSum(std::string input, size_t distance=1) {
     auto next = input;
     std::rotate(next.rbegin(), next.rbegin() + distance,  next.rend());
 
-    auto nextIter = next.begin();
-    auto sum = 0u;
-    for(auto current : input) {
-        if (current == *nextIter) {
-            sum += current - '0';
-        }
-        ++nextIter;
-    }
-
-    return sum;
-
+    auto zipped = zip(input, next);
+    return std::accumulate(zipped.begin(), zipped.end(), 0u, [](auto sum, auto zipPair) { return sum + ( zipPair.first == zipPair.second ? zipPair.first - '0' : 0); });
 }
 
 

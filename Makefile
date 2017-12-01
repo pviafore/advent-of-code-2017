@@ -5,4 +5,4 @@ all:
 
 .PHONY: $(FOLDERS)
 $(FOLDERS):
-		g++-7 -I$@ $(shell find $@ -name *.cpp) -o solution && ./solution
+		g++-7 -std=c++17 -Icommon $(shell find $@ -name *.cpp) -o solution && ./solution
