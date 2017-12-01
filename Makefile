@@ -4,5 +4,9 @@ all:
 		echo $(FOLDERS)
 
 .PHONY: $(FOLDERS)
-$(FOLDERS):
-		g++-7 -std=c++17 -Icommon $(shell find $@ -name *.cpp) -o solution && ./solution
+$(FOLDERS): verify
+		g++-7 -std=c++17 -Icommon $(shell find $@ common -name *.cpp) -o solution && ./solution
+
+.PHONY: verify
+verify:
+		cppcheck $(FOLDERS) --enable=style --enable=warning -Icommon --error-exitcode=1 -q

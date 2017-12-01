@@ -1,39 +1,22 @@
 #include <algorithm>
-#include <cstdlib>
-#include <fstream>
 #include <iostream>
 #include <numeric>
 #include <string>
 
 #include "algo.h"
+#include "input.h"
 
-
-auto getInput() { 
-    std::ifstream inFile;
-    inFile.open("input/input01.txt");
-
-    if(inFile.eof()) {
-        throw std::runtime_error("The file should not have been empty)");
-    }
-
-    std::string input;
-    getline(inFile, input);
-    return input;
-
-}
-
-auto getSum(std::string input, size_t distance=1) {
+auto getSum(const std::string &input, size_t distance=1) {
     auto next = input;
     std::rotate(next.rbegin(), next.rbegin() + distance,  next.rend());
 
-    auto zipped = zip(input, next);
-    return std::accumulate(zipped.begin(), zipped.end(), 0u, [](auto sum, auto zipPair) { return sum + ( zipPair.first == zipPair.second ? zipPair.first - '0' : 0); });
+    auto zipped = algo::zip(input, next);
+    auto addValueIfMatching = [](auto sum, auto zipPair) { return sum + ( zipPair.first == zipPair.second ? zipPair.first - '0' : 0); };
+    return std::accumulate(zipped.begin(), zipped.end(), 0u, addValueIfMatching);
 }
 
-
 int main() {
-
-    auto input = getInput();;
+    auto input = input::readSingleLineFile("input/input01.txt");
     std::cout << getSum(input) << "\n";
     std::cout << getSum(input, input.size()/2) << "\n";
     return 0;
