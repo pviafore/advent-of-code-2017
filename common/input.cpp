@@ -1,11 +1,10 @@
 #include "input.h"
 
-#include <fstream>
 #include <iterator>
 #include <sstream>
 
 namespace input {
-    std::string readSingleLineFile(std::string fileName) {
+    std::string readSingleLineFile(const std::string& fileName) {
         std::ifstream inFile;
         inFile.open(fileName);
 
@@ -18,7 +17,7 @@ namespace input {
         return input;
     }
 
-    std::vector<std::string> readMultiLineFile(std::string fileName) {
+    std::vector<std::string> readMultiLineFile(const std::string& fileName) {
         std::ifstream inFile;
         inFile.open(fileName);
 
@@ -36,5 +35,12 @@ namespace input {
         std::istringstream iss(str);
         std::vector<std::string> v((std::istream_iterator<std::string>(iss)), std::istream_iterator<std::string>());
         return v;
+    }
+
+    std::vector<int> toNumbers(const std::string &str) {
+        auto v = split(str);
+        std::vector<int> out;
+        std::transform(v.begin(), v.end(), std::back_inserter(out), [](auto s){ return std::stoi(s); } );
+        return out;
     }
 }
