@@ -11,5 +11,5 @@ namespace algo {
             out.emplace_back(*iter1++, *iter2++);
         }
         return out;
-}  
+    }  
 }

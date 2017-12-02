@@ -1,11 +1,8 @@
-FOLDERS = $(notdir $(shell find -type d -not -path "*.git*"))
-all:
-		find -type d -not -path *.git*
-		echo $(FOLDERS)
+FOLDERS = $(notdir $(shell find challenges -type d -not -path "*.git*"))
 
 .PHONY: $(FOLDERS)
 $(FOLDERS): verify
-		g++-7 -std=c++17 -Icommon $(shell find $@ common -name *.cpp) -o solution && ./solution
+		g++-7 -std=c++17 -Icommon $(shell find challenges/$@ common -name *.cpp) -o solution && ./solution
 
 .PHONY: verify
 verify:
