@@ -13,9 +13,9 @@ namespace algo {
         return out;
     }  
 
-    auto find_pairs(auto container, auto filterOperation) {
-        using container_type = typename decltype(container.begin())::value_type; 
-        std::vector<std::pair<container_type, container_type>> out;
+    auto find_matching_pairs(auto container, auto filterOperation) {
+        using ContainerType = typename decltype(container.begin())::value_type; 
+        std::vector<std::pair<ContainerType, ContainerType>> out;
         for (auto iter1 = container.begin(); iter1 != container.end(); ++iter1) {
             for(auto iter2 = iter1+1; iter2 != container.end(); ++iter2) {
                 if (filterOperation(*iter1, *iter2)){
@@ -27,5 +27,23 @@ namespace algo {
             }
         }
         return out;
+    }
+
+    auto map(auto container, auto rowOperation) {
+        using ContainerType = typename decltype(container.begin())::value_type; 
+        using ReturnType = typename std::invoke_result_t<decltype(rowOperation), ContainerType>;
+        std::vector<ReturnType> v;
+        std::transform(container.begin(), container.end(), std::back_inserter(v), rowOperation);
+        return v;
+    }
+
+    auto range(auto start, auto end) {
+        using RangeType = decltype(start);
+        static_assert(std::is_same<RangeType, decltype(end)>::value, "Start and end must be the same type for range functions");
+        std::vector<RangeType> v;
+        for(RangeType r = start; r < end; ++r) {
+            v.push_back(r);
+        }
+        return v;
     }
 }

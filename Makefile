@@ -1,9 +1,9 @@
 FOLDERS = $(notdir $(shell find challenges -type d -not -path "*.git*"))
 
+CPPCHECK ?= 1
 .PHONY: $(FOLDERS)
-$(FOLDERS): verify
+$(FOLDERS):
 		g++-7 -std=c++17 -Icommon $(shell find challenges/$@ common -name *.cpp) -o solution && ./solution
-
-.PHONY: verify
-verify:
 		cppcheck $(FOLDERS) --enable=style --enable=warning -Icommon --error-exitcode=1 -q
+		
+		
