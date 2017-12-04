@@ -9,7 +9,7 @@
 using Position = std::pair<int, int>;
 
 auto getWidth(unsigned int level) {
-    return level * 2 + 1;
+    return 2 * level + 1;
 }
 
 auto getTargetLevel(unsigned int target) { 
