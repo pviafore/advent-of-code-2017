@@ -84,9 +84,9 @@ private:
     }
 
     std::map<Position, unsigned int> cache;
-    unsigned int target;
+    const unsigned int target;
     std::optional<unsigned int> answer;
-    std::vector<Position> modifiers = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1} };
+    const std::vector<Position> modifiers = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1} };
 };
 
 class PositionIterator {
