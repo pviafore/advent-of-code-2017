@@ -3,7 +3,6 @@
 #include <map>
 #include <numeric>
 #include <tuple>
-#include <utility>
 #include <vector>
 
 using Position = std::pair<int, int>;
@@ -107,7 +106,7 @@ public:
     } 
 
     void move(Direction direction, unsigned int numberOfTimes=1) {
-        for(int i = 0; i < numberOfTimes; ++i){
+        for(unsigned int i = 0u; i < numberOfTimes; ++i){
             updatePosition(direction);
             lookupCache.calculate(position);
         }

@@ -40,7 +40,11 @@ namespace input {
     std::vector<int> toNumbers(const std::string &str) {
         auto v = split(str);
         std::vector<int> out;
-        std::transform(v.begin(), v.end(), std::back_inserter(out), [](auto s){ return std::stoi(s); } );
+        std::transform(v.begin(), v.end(), std::back_inserter(out), toNumber );
         return out;
+    }
+
+    int toNumber(std::string str) {
+        return std::stoi(str);
     }
 }

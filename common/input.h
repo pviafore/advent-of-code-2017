@@ -11,6 +11,7 @@ namespace input {
     
     std::vector<std::string> split(const std::string& str);
     std::vector<int> toNumbers(const std::string & str);
+    int toNumber(std::string s);
 
 
 }
