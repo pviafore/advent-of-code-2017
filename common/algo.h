@@ -47,4 +47,15 @@ namespace algo {
         }
         return v;
     }
+
+    auto apply_cyclically(auto &container, auto current, size_t numberOfTimes, auto operation) {
+        while(numberOfTimes-- != 0) {
+            if(current == container.end()) {
+                current = container.begin();
+            }
+
+            operation(*current);
+            current++;
+        }
+    }
 }
