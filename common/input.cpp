@@ -37,6 +37,16 @@ namespace input {
         return v;
     }
 
+    std::vector<std::string> split(const std::string& str, char delimiter){
+        std::istringstream iss(str);
+        std::vector<std::string> v;
+        std::string token;
+        while(std::getline(iss, token, delimiter)) {
+            v.push_back(token);
+        }
+        return v;
+    }
+
     std::vector<int> toNumbers(const std::string &str) {
         auto v = split(str);
         std::vector<int> out;
