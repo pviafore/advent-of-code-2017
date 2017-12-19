@@ -57,4 +57,11 @@ namespace input {
     int toNumber(std::string str) {
         return std::stoi(str);
     }
+
+    std::string dropTrailingComma(const std::string &s) {
+        if (*(s.end() - 1) == ',') {
+            return std::string(s.begin(), s.end() - 1);
+        }
+        return s;
+    }
 }

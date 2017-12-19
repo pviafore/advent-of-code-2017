@@ -16,12 +16,6 @@ std::string stripFirstAndLastCharacter(const std::string &s) {
     return std::string(s.begin()+1, s.end()-1);
 }
 
-std::string dropTrailingComma(const std::string &s) {
-    if (*(s.end() -1) == ',') {
-        return std::string(s.begin(), s.end()-1);
-    }
-    return s;
-}
 
 struct InputTower {
     explicit InputTower(const std::string &input) : totalWeight(std::nullopt) {
@@ -31,7 +25,7 @@ struct InputTower {
         weight = std::stoi(stripFirstAndLastCharacter(words[1]));
         
         if(words.size() > 3) {
-            std::transform(words.begin()+3, words.end(), std::back_inserter(subTowers), dropTrailingComma);
+            std::transform(words.begin()+3, words.end(), std::back_inserter(subTowers), input::dropTrailingComma);
         }
 
     }

@@ -1,3 +1,6 @@
+#ifndef ALGO_H_
+#define ALGO_H_
+
 #include <algorithm>
 #include <vector>
 
@@ -58,4 +61,26 @@ namespace algo {
             current++;
         }
     }
+
+    auto erase_if(auto& container, const auto & predicate) {
+        auto it = container.begin();
+        while(it!=container.end()) {
+            if(predicate(*it)) {
+                it = container.erase(it);
+            }
+            else {
+                ++it;
+            }
+        }
+    }
+
+    auto getNumericRange(auto start, auto end) {
+        std::vector<int> range;
+        for(int i = start; i < end; ++i ){ 
+            range.push_back(i);
+        }
+        return range;
+    }
 }
+
+#endif

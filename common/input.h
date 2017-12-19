@@ -1,3 +1,6 @@
+#ifndef INPUT_H_
+#define INPUT_H_
+
 #include <algorithm>
 #include <fstream>
 #include <string>
@@ -13,6 +16,9 @@ namespace input {
     std::vector<std::string> split(const std::string& str, char delimiter);
     std::vector<int> toNumbers(const std::string & str);
     int toNumber(std::string s);
+    std::string dropTrailingComma(const std::string& str);
 
 
 }
+
+#endif
