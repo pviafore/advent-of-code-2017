@@ -2,9 +2,9 @@
 #define INPUT_H_
 
 #include <algorithm>
-#include <fstream>
+#include <iterator>
 #include <string>
-#include <type_traits>
+#include <sstream>
 #include <vector>
 
 namespace input {
@@ -18,7 +18,7 @@ namespace input {
     int toNumber(std::string s);
     std::string dropTrailingComma(const std::string& str);
 
-
+    std::string join(const std::vector<std::string>& v);
 }
 
 #endif

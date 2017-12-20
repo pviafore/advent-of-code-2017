@@ -1,7 +1,8 @@
 #include "input.h"
 
-#include <iterator>
-#include <sstream>
+#include <fstream>
+#include <type_traits>
+
 
 namespace input {
     std::string readSingleLineFile(const std::string& fileName) {
@@ -63,5 +64,11 @@ namespace input {
             return std::string(s.begin(), s.end() - 1);
         }
         return s;
+    }
+
+    std::string join(const std::vector<std::string>& v) { 
+        std::stringstream ss;
+        std::copy(v.begin(), v.end(), std::ostream_iterator<std::string>(ss, ""));
+        return ss.str();
     }
 }
